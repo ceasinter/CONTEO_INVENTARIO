@@ -11,5 +11,5 @@ que son utilizado para uso interno del centro de distribución, bien sea para us
 uso administrativo, uso operacional. ***** NO PARA USO DE PRODUCCIÓN ****
 
 ---
-En ésta práctica el enfoque es el uso de COMPOSITION Y ASOCIATION para las relaciones entre tablas padres e hijas
+En ésta práctica el enfoque es el uso de COMPOSITION Y ASSOCIATION para las relaciones entre tablas padres e hijas
 ( Maestro y Detalle ) además del Behavior Definition asociado y el uso de Draft.
