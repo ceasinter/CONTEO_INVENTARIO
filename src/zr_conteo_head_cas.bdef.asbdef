@@ -1,0 +1,81 @@
+managed implementation in class zbp_r_conteo_head_cas unique;
+strict ( 2 );
+with draft;
+
+define behavior for zr_conteo_head_cas alias Conteo
+//implementation in class zbp_r_conteo_head_cas unique
+persistent table zconteo_head_cas
+draft table zconteo_head_d
+lock master
+total etag LastChangedAt
+authorization master ( global, instance )
+etag master LocalLastChangedAt
+late numbering
+{
+  create ( precheck );
+  update ( precheck );
+  //  create ( authorization : global );
+  //  update;
+  delete;
+  field ( readonly ) CountUUID;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, LocalLastChangedBy;
+  field ( mandatory ) CountType, Plant;
+  association _DetalleConteo { create ( features : instance, authorization : update ); with draft; }
+
+  action ( features : instance, authorization : update ) acceptConteo result [1] $self;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  internal draft action AdditionalSave;
+
+  mapping for zconteo_head_cas
+    {
+      CountUUID          = count_uuid;
+      CountType          = count_type;
+      Plant              = plant;
+      Status             = status;
+      CreatedBy          = created_by;
+      LastChangedBy      = created_at;
+      LocalLastChangedBy = last_changed_by;
+      CreatedAt          = last_changed_at;
+      LastChangedAt      = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for zr_det_conteo_cas alias DetalleConteo
+//implementation in class zbp_r_det_conteo_cas unique
+persistent table zconteo_item_cas
+draft table zconteo_item_d
+lock dependent by _Conteo
+authorization dependent by _Conteo
+etag master LocalLastChangedAt
+late numbering
+{
+  update;
+  delete;
+  field ( readonly ) ItemUUID, CountUUID;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, LocalLastChangedBy;
+  field ( mandatory ) BookQty, CountQty, Material, StorageLocation;
+  association _Conteo { with draft; }
+
+  mapping for zconteo_item_cas
+    {
+      ItemUUID           = item_uuid;
+      CountUUID          = count_uuid;
+      Material           = material;
+      StorageLocation    = storage_location;
+      BookQty            = book_qty;
+      CountQty           = count_qty;
+      Unit               = unit;
+      CreatedBy          = created_by;
+      LastChangedBy      = created_at;
+      LocalLastChangedBy = last_changed_by;
+      CreatedAt          = last_changed_at;
+      LastChangedAt      = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

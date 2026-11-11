@@ -1,0 +1,114 @@
+@Metadata.layer: #CORE
+
+//Cabecera
+@UI: {
+    headerInfo:
+    {
+        typeName: 'Conteo Inventario',
+        typeNamePlural: 'Conteos de Inventario',
+        title:
+        {
+            type: #STANDARD,
+            value: 'CountUUID'
+        },
+
+        description:
+        {
+            type: #STANDARD
+        }
+     },
+
+     presentationVariant:
+     [{
+            sortOrder:
+            [{ by: 'CountUUID',
+               direction: #DESC
+             }],
+             visualizations:
+             [{
+                    type: #AS_LINEITEM
+             }]
+     }]
+}
+
+annotate entity zc_conteo_cas with
+{
+
+  //CREACIÓN DE PESTAÑAS PARA LA PANTALLA DE DETALLE
+  @UI.facet: [{
+      id: 'ConteoInventario',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Conteo Inventario',
+      position: 10 },
+      {
+      id: 'DetalleConteo',
+       purpose: #STANDARD,
+       type: #LINEITEM_REFERENCE,
+       label: 'Detalle Conteo',
+       position: 20,
+       targetElement: '_DetalleConteo'
+      }]
+
+  @UI.hidden: true
+  CountUUID;
+
+  @UI.lineItem: [{
+      position: 20,
+      importance: #HIGH
+     },
+     
+     //     AGREGAR BOTONES
+     { type:#FOR_ACTION,
+
+  //     ESTA ACCIÓN dataAction: 'acceptTravel' VA ASOCIADA AL BEHAVIOR DEFINITION EN LA PARTE DE ACTIONS
+     dataAction: 'acceptTravel',
+        label: 'Accept',
+        position: 10
+      }]
+
+    //     MUESTRA EL CAMPO EL LA PANTALLA DE DETALLE
+  @UI.identification: [{ position: 20 }]
+
+  //    CAMPO DE SELECCIÓN DE FILTROS QUE SE MOSTRARAN EN LA CABECERA DE PANTALLA
+  @UI.selectionField: [{ position: 20 }]
+  CountType;
+
+  @UI.lineItem: [{
+    position: 30,
+    importance: #HIGH
+   }]
+
+  //     MUESTRA EL CAMPO EL LA PANTALLA DE DETALLE
+  @UI.identification: [{ position: 30 }]
+
+  //    CAMPO DE SELECCIÓN DE FILTROS QUE SE MOSTRARAN EN LA CABECERA DE PANTALLA
+  @UI.selectionField: [{ position: 30 }]
+  Plant;
+
+  @UI.lineItem: [{
+    position: 40,
+    importance: #HIGH
+   }]
+
+  //     MUESTRA EL CAMPO EL LA PANTALLA DE DETALLE
+  @UI.identification: [{ position: 40 }]
+
+  //    CAMPO DE SELECCIÓN DE FILTROS QUE SE MOSTRARAN EN LA CABECERA DE PANTALLA
+  @UI.selectionField: [{ position: 40 }]
+  Status;
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LocalLastChangedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+  
+}

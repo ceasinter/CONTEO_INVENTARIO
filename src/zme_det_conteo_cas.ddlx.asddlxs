@@ -1,0 +1,59 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo.typeName: 'Detalle Conteo'
+@UI.headerInfo.typeNamePlural: 'Detalles Conteo'
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'ItemUUID'
+@UI.headerInfo.title.label: 'Detalle de Conteo'
+
+annotate entity zc_det_conteo_cas with
+{
+  @UI.facet: [
+
+    //PESTAÑA DE DETALLE DE CONTEO
+    {
+    id: 'DetalleConteo',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Detalle de Conteo',
+    position: 10
+    }]
+
+  @UI.hidden: true
+  ItemUUID;
+  @UI.hidden: true
+  CountUUID;
+
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  @UI.identification: [{ position: 20 }]
+  Material;
+
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  @UI.identification: [{ position: 30 }]
+  StorageLocation;
+
+  @UI.lineItem: [{ position: 40, importance: #HIGH }]
+  @UI.identification: [{ position: 40 }]
+  BookQty;
+
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+  @UI.identification: [{ position: 50 }]
+  CountQty;
+
+  @UI.lineItem: [{ position: 60, importance: #HIGH }]
+  @UI.identification: [{ position: 60 }]
+  Unit;
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LocalLastChangedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

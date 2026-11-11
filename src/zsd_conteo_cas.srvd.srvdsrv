@@ -1,0 +1,7 @@
+@EndUserText.label: 'SD Conteo'
+@AbapCatalog.extensibility.extensible: true
+define service Zsd_conteo_cas
+  provider contracts odata_v4_ui {
+  expose zc_conteo_cas     as Conteo;
+  expose zc_det_conteo_cas as DetalleConteo;
+}
