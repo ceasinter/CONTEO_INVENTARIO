@@ -5,16 +5,19 @@
 @Search.searchable: true
 @ObjectModel.semanticKey: [ 'CountUUID' ]
 define root view entity zc_conteo_cas
+provider contract transactional_query
   as projection on zr_conteo_head_cas
 {
   key CountUUID,
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.8
       CountType,
+      CountTypeText,
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.8
       Plant,
       Status,
+      CountDate,
       @Semantics.user.createdBy: true
       CreatedBy,
       @Semantics.user.lastChangedBy: true

@@ -1,15 +1,5 @@
-class ZBP_R_CONTEO_HEAD_CAS definition
-  public
-  abstract
-  final
-  create public .
-
-public section.
-protected section.
-private section.
+CLASS zbp_r_conteo_head_cas DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zr_conteo_head_cas.
 ENDCLASS.
 
-
-
-CLASS ZBP_R_CONTEO_HEAD_CAS IMPLEMENTATION.
+CLASS zbp_r_conteo_head_cas IMPLEMENTATION.
 ENDCLASS.

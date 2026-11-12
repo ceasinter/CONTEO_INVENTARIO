@@ -18,17 +18,19 @@ late numbering
   //  update;
   delete;
   field ( readonly ) CountUUID;
-  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, LocalLastChangedBy;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, LocalLastChangedBy, CountTypeText;
   field ( mandatory ) CountType, Plant;
   association _DetalleConteo { create ( features : instance, authorization : update ); with draft; }
 
   action ( features : instance, authorization : update ) acceptConteo result [1] $self;
+  determination setInitialStatus on save { create; }
+  validation validateQuantities on save { create; update; }
 
   draft action Edit;
   draft action Activate optimized;
   draft action Discard;
   draft action Resume;
-  draft determine action Prepare;
+  draft determine action Prepare { validation validateQuantities; }
   internal draft action AdditionalSave;
 
   mapping for zconteo_head_cas
@@ -36,6 +38,7 @@ late numbering
       CountUUID          = count_uuid;
       CountType          = count_type;
       Plant              = plant;
+      CountDate          = count_date;
       Status             = status;
       CreatedBy          = created_by;
       LastChangedBy      = created_at;

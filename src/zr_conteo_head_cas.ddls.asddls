@@ -7,9 +7,19 @@ define root view entity zr_conteo_head_cas
   composition [0..*] of zr_det_conteo_cas as _DetalleConteo
 {
   key count_uuid            as CountUUID,
+
+      @EndUserText.label: 'Tipo de Conteo'
+      @ObjectModel.text.element: [ 'CountTypeText' ]
       count_type            as CountType,
+      @EndUserText.label: 'Descripción Conteo'
+      case count_type
+        when 'C' then 'Cíclico'
+        when 'G' then 'General'
+        else 'Desconocido'
+      end                   as CountTypeText,
       plant                 as Plant,
       status                as Status,
+      count_date            as CountDate,
 
       //      Campos Auditoría de Usuario
       @Semantics.user.createdBy: true

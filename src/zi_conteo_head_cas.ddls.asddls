@@ -10,6 +10,7 @@ provider contract transactional_interface
       CountType,
       Plant,
       Status,
+      CountDate,
       @Semantics.user.createdBy: true
       CreatedBy,
       @Semantics.user.lastChangedBy: true
